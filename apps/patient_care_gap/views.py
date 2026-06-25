@@ -4,4 +4,4 @@ from django.http import HttpResponse
 
 # Create your views here.
 def dashboard(request):
-    return HttpResponse('Site goes here')
+    return HttpResponse('Patient site goes here')
