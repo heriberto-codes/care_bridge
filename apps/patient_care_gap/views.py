@@ -1,5 +1,5 @@
-from .models import Patient
-from .serializers import PatientSerializer
+from .models import Patient, CareGap
+from .serializers import PatientSerializer, CareGapSerializer
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -17,6 +17,21 @@ def patient_list(request):
 @api_view(['POST'])
 def patient_create(request):
     serializer = PatientSerializer(data=request.data)
+    
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def care_gap_list(request):
+    care_gaps = CareGap.objects.all()
+    serializer = CareGapSerializer(care_gaps, many=True)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def care_gap_create(request):
+    serializer = CareGapSerializer(data=request.data)
     
     if serializer.is_valid():
         serializer.save()
