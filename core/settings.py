@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
+import sys
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -61,6 +62,19 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+TESTING = "test" in sys.argv or "PYTEST_VERSION" in os.environ
+
+if not TESTING:
+    INSTALLED_APPS = [
+        *INSTALLED_APPS,
+        "debug_toolbar",
+    ]
+
+    MIDDLEWARE = [
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
+        *MIDDLEWARE,
+    ]
 
 ROOT_URLCONF = 'core.urls'
 
@@ -136,3 +150,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Django REST Framework / CORS
 CORS_ALLOW_ALL_ORIGINS = True
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
