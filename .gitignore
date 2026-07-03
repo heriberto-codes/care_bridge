@@ -465,4 +465,12 @@ sketch
 .history
 .ionide
 
+### Vite / React ###
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.production.local
+
 # End of https://www.toptal.com/developers/gitignore/api/django,python,node,react,macos,visualstudiocode
