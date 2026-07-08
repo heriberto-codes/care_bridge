@@ -14,36 +14,36 @@ class CareGap(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name="care_gaps")
     
     class CareGapType(models.TextChoices):
-        ANNUAL_WELLNESS_VISIT = "AWV", "Annual Wellness Visit"
-        MEDICATION_CHECK = "MC", "Medication Check"
-        SCREENING_REMINDER = "SR", "Screening Reminder"
-        POST_DISCHARGE_FOLLOW_UP = "PDFU", "Post-Discharge Follow-Up"
+        ANNUAL_WELLNESS_VISIT = "Annual Wellness Visit", "Annual Wellness Visit"
+        MEDICATION_CHECK = "Medication Check", "Medication Check"
+        SCREENING_REMINDER = "Screening Reminder", "Screening Reminder"
+        POST_DISCHARGE_FOLLOW_UP = "Post-Discharge Follow-Up", "Post-Discharge Follow-Up"
         
     care_gap_type = models.CharField(
-        max_length=4,
+        max_length=30,
         choices=CareGapType.choices,
         default=CareGapType.ANNUAL_WELLNESS_VISIT
     )
     
     class Priority(models.TextChoices):
-        LOW = "L", "Low"
-        MEDIUM = "M", "Medium"
-        HIGH = "H", "High"
+        LOW = "Low", "Low"
+        MEDIUM = "Medium", "Medium"
+        HIGH = "High", "High"
     
     priority = models.CharField(
-        max_length=1,
+        max_length=10,
         choices=Priority.choices,
         default=Priority.LOW
     )
     
     class Status(models.TextChoices):
-        NOT_STARTED = "NS", "Not Started"
-        CONTACTED = "CONT", "Contacted"
-        FOLLOW_UP_NEEDED = "FUN", "Follow-up Needed"
-        COMPLETED = "COM", "Completed"
+        NOT_STARTED = "Not Started", "Not Started"
+        CONTACTED = "Contacted", "Contacted"
+        FOLLOW_UP_NEEDED = "Follow-up Needed", "Follow-up Needed"
+        COMPLETED = "Completed", "Completed"
     
     status = models.CharField(
-        max_length=5,
+        max_length=30,
         choices=Status.choices,
         default=Status.NOT_STARTED
     )

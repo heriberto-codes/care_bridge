@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 
 function Patients() {
-    const [patients, setPatients] = useState([])
+    const [patients, setPatients] = useState([]);
 
     useEffect(() => {
         const fetchPatients = async () => {
-        const response = await fetch('http://localhost:8000/api/patients/view_patient/');
-        const data = await response.json();
-        setPatients(data)
-    }
+            const response = await fetch('/api/patients/view_patient/');
+            const data = await response.json();
+            setPatients(data)
+        }
 
         fetchPatients()
     }, [])
